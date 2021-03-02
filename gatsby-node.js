@@ -7,7 +7,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allContentfulCookiebotManual {
+        allContentfulSamplePosts {
           edges {
             node {
               id
@@ -22,17 +22,12 @@ exports.createPages = ({ graphql, actions }) => {
         console.log("Error retrieving contentful data",      result.errors);
       }
 
-      const manualTemplate = path.resolve("./src/templates/post.js");
-      result.data.allContentfulCookiebotManual.edges.forEach(edge => {
-
-        //const relatedTags = [];
-        //edge.node.tags && edge.node.tags.forEach(tag => {
-        //  relatedTags.push(tag.slug);
-        //})
+      const template = path.resolve("./src/templates/post.js");
+      result.data.allContentfulSamplePosts.edges.forEach(edge => {
 
         createPage({//contextで送る値はgraphQLで変数として使用できる
           path: `/post/${edge.node.slug}/`,
-          component: slash(manualTemplate),
+          component: slash(template),
           context: {
             slug: edge.node.slug,
             id: edge.node.id,

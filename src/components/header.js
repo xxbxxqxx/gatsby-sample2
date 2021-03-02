@@ -38,7 +38,8 @@ const Header = ({ siteTitle }) => {
 	return (
 	<header>
 		<Toolbar className={classes.toolbar} style={{borderBottom: `1px solid rgba(0, 0, 0, 0.12)`,}}>
-			<ButtonMU size="medium" className={classes.buttomCbjp} style={{position: "absolute", paddingRight: 24}}><a href="https://www.cookiebot.jp/" target="_blank" style={{textTransform: "lowercase"}}>cookiebot.jp<OpenInNewIcon className="IconHeaderLinkExternal" style={{fontSize: "16px", position: "absolute", right: 4, top: 11}}/></a></ButtonMU>
+		{/*}
+			<ButtonMU size="medium" className={classes.buttomCbjp} style={{position: "absolute", paddingRight: 24}}><a href="https://www.cookiebot.jp/" target="_blank" style={{textTransform: "lowercase"}}>cookiebot.jp<OpenInNewIcon className="IconHeaderLinkExternal" style={{fontSize: "16px", position: "absolute", right: 4, top: 11}}/></a></ButtonMU>*/}
 			<Typography
 				component="h2"
 				variant="h5"
@@ -47,7 +48,7 @@ const Header = ({ siteTitle }) => {
 				noWrap
 				style={{flex: 1,padding: "0 50px"}}
 			>
-				<Link to="/"><Img fluid={data.imgLogo.childImageSharp.fluid}  alt={siteTitle} style={{maxWidth: 370, margin: "0 auto"}} /></Link>
+				<Link to="/">Gatsby Sample Site</Link>
 			</Typography>
 			<ModalSeach />
 			{/*

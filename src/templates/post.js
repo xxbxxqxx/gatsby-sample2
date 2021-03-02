@@ -30,7 +30,7 @@ const options = {
 };
  
 const manualPost = ({ data, location }) => {
-	const { title, content, contentMarkdown, createdAt, thumbnail } = data.contentfulCookiebotManual;
+	const { title, content, createdAt, thumbnail } = data.contentfulSamplePosts;
 
 	return (
 		<Layout>
@@ -52,14 +52,11 @@ const manualPost = ({ data, location }) => {
 									className="thumbnail"
 								/>
 							}
-							{contentMarkdown //マークダウン優先
-								? <div className="body-text" dangerouslySetInnerHTML={{__html: contentMarkdown.childMarkdownRemark.html}} />
-								: <div className="body-text">{documentToReactComponents(content.json, options)}</div>
-							}
+							<div className="body-text">{documentToReactComponents(content.json, options)}</div>
 							<p className="post__date__bottom">Posted on {createdAt}</p>
 						</div>
 						<div className="cm-header-manualhome-wrapper">
-							<ButtonMU size="large"><Link to="/">他の記事を読む（マニュアルTOP）</Link></ButtonMU>
+							<ButtonMU size="large"><Link to="/">他の記事を読む</Link></ButtonMU>
 						</div>
 					</div>
 				</div>
@@ -70,15 +67,9 @@ const manualPost = ({ data, location }) => {
 export default manualPost;
 export const pageQuery = graphql`
 	query( $slug: String) {
-		contentfulCookiebotManual(slug: { eq: $slug }) {
+		contentfulSamplePosts(slug: { eq: $slug }) {
 			id
 			title
-			contentMarkdown{
-				contentMarkdown
-				childMarkdownRemark {
-					html
-				}
-			}
 			content{
 				json
 			}

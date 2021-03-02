@@ -262,7 +262,7 @@ footer{
 	.post-basic-item-a{
 		&:hover{
 			outline-width: inherit;
-			h2,p{
+			h2,h3,p{
 				color: $c-link1;
 			}
 		}
@@ -279,6 +279,13 @@ footer{
 		border-radius: 3px;
 		cursor: pointer;
 		text-align: center;
+	}
+}
+.result-inner{
+	.post-basic-item-a{
+		h3{
+			font-size: 17px !important;
+		}
 	}
 }
 //Sidebar

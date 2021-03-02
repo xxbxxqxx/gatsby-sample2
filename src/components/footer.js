@@ -9,6 +9,7 @@ const Footer = ({ siteTitle }) => {
 		<footer className="footer-common">
 			<section className="footer-common__menu">
 				<div className="ast-container">
+					{/*}
 					<div className="flex-row">
 						<div className="flex-column flex-column-3">
 							<img src={LogoCM} alt={siteTitle} width="150" height="55" className="footer-logo__img" />
@@ -39,8 +40,11 @@ const Footer = ({ siteTitle }) => {
 							<p><a href="https://www.cookiebot.com/" target="_blank">Cookiebot</a></p>
 						</div>
 					</div>
+				*/}
+				<Link to="/">Gatsby Sample Site</Link>
 				</div>
 			</section>
+			{/*}
 			<section className="footer-common__copyright">
 				<div className="ast-container flex-row">
 					<div className="flex-column-6">
@@ -51,6 +55,7 @@ const Footer = ({ siteTitle }) => {
 					</div>
 				</div>
 			</section>
+		*/}
 		</footer>
 	)
 }

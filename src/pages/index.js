@@ -19,14 +19,14 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 const IndexPage = ({ data, location }) => {
-  const manualPosts = data.allContentfulCookiebotManual.edges;
+  const manualPosts = data.allContentfulSamplePosts.edges;
   return (
   <Layout>
     <SEO title="Home" />
     <div className="bg-gray">
       <div className="ast-container ast-container-top">
         <div className="post-basic">
-          <h2 style={{margin: "2rem 0 3rem", fontSize: 32}}>Cookiebot マニュアル一覧</h2>
+          <h2 style={{margin: "2rem 0 3rem", fontSize: 32}}>記事一覧</h2>
           <Grid container spacing={2} elevation="0" style={{display: "flex", flexWrap: "wrap", background: "none", flexGrow: 1,}}>
           {manualPosts && manualPosts.map(({ node: post }) => {
               return (
@@ -41,16 +41,14 @@ const IndexPage = ({ data, location }) => {
                         style={{height:"100%"}}
                       />
                     </CardMedia> 
-                  : <div style={{height: 140,lineHeight: "140px", fontSize: "2em", textAlign: "center", background: "rgb(92 182 204)" }}>&#x1f916;</div>
+                  : <div style={{height: 140,lineHeight: "140px", fontSize: "2em", textAlign: "center", background: "rgb(92 182 204)" }}> &#x1f3d4;</div>
                   }
                   <CardContent>
                   <Typography color="textPrimary" variant="h2" component="h3" style={{fontSize: 22,fontWeight: 700,marginTop: 3,marginBottom: 13,}}>
                     {post.title}
                   </Typography>
                   <Typography color="textSecondary" style={{fontSize: 16,marginBottom: 10,}}>
-                    {post.contentMarkdown
-                      ? post.contentMarkdown.childMarkdownRemark.excerpt
-                      : documentToPlainTextString(post.content.json).slice(0, 100)
+                    {documentToPlainTextString(post.content.json).slice(0, 100)
                     }...
                   </Typography>
                   <Typography color="textSecondary" style={{fontSize: 15,}}>
@@ -75,22 +73,14 @@ export default IndexPage
 
 export const query = graphql`
   query BlogArticleQueryTop {
-    allContentfulCookiebotManual: allContentfulCookiebotManual(limit: 30, sort: {fields: createdAt, order: DESC}, filter: {node_locale: {eq: "en-US"}} ) {
+    allContentfulSamplePosts: allContentfulSamplePosts(limit: 30, sort: {fields: createdAt, order: DESC}, filter: {node_locale: {eq: "en-US"}} ) {
       edges {
         node {
           id
           title
           slug
-          tags
           content{
             json
-          }
-          contentMarkdown{
-            contentMarkdown
-            childMarkdownRemark {
-              html
-              excerpt(format: PLAIN, pruneLength: 100, truncate: true)
-            }
           }
           thumbnail{
             fluid(maxWidth: 400) {

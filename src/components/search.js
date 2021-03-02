@@ -18,7 +18,7 @@ import Alert from '@material-ui/lab/Alert';
 const SearchResult = props => {
   const tempData = useStaticQuery(graphql`
       query SearchData {
-        allContentfulCookiebotManualForSeach: allContentfulCookiebotManual( sort: {fields: createdAt, order: DESC}, filter: {node_locale: {eq: "en-US"}} ) {
+        allContentfulSamplePostsForSeach: allContentfulSamplePosts( sort: {fields: createdAt, order: DESC}, filter: {node_locale: {eq: "en-US"}} ) {
           edges {
             node {
               title
@@ -31,11 +31,6 @@ const SearchResult = props => {
               content{
                 json
               }
-              contentMarkdown {
-                childMarkdownRemark {
-                  excerpt(format: PLAIN, pruneLength: 3000, truncate: true)
-                }
-              }
               createdAt(formatString: "YYYY-MM-DD")
             }
           }
@@ -44,7 +39,7 @@ const SearchResult = props => {
   `)
 
   const className = useState("")
-  const allPosts = tempData.allContentfulCookiebotManualForSeach.edges
+  const allPosts = tempData.allContentfulSamplePostsForSeach.edges
   const emptyQuery = ""
   const [state, setState] = useState({
     filteredData: [],
@@ -53,16 +48,14 @@ const SearchResult = props => {
   const handleInputChange = event => {
     console.log(event.target.value)
     const query = event.target.value
-    const posts = tempData.allContentfulCookiebotManualForSeach.edges || []
+    const posts = tempData.allContentfulSamplePostsForSeach.edges || []
 
     const filteredData = posts.filter(post => {
       const title = post.node.title
       const contentd = post.node.content ? documentToPlainTextString(post.node.content.json) : ""
-      const contentmd = post.node.contentMarkdown ? post.node.contentMarkdown.childMarkdownRemark.excerpt : ""
       return (
         title.toLowerCase().includes(query.toLowerCase()) ||
-        contentd.toLowerCase().includes(query.toLowerCase()) ||
-        contentmd.toLowerCase().includes(query.toLowerCase())
+        contentd.toLowerCase().includes(query.toLowerCase())
       )
     })
     setState({
@@ -102,7 +95,7 @@ const SearchResult = props => {
                       style={{height:"100%"}}
                     />
                   </CardMedia> 
-                : <div style={{height: 140,lineHeight: "140px", fontSize: "2em", textAlign: "center", background: "rgb(92 182 204)" }}>&#x1f916;</div>
+                : <div style={{height: 140,lineHeight: "140px", fontSize: "2em", textAlign: "center", background: "rgb(92 182 204)" }}> &#x1f3d4;</div>
                 }
                 <CardContent>
                 <Typography color="textPrimary" variant="h2" component="h3" style={{fontSize: 22,fontWeight: 700,marginTop: 3,marginBottom: 13,}}>
